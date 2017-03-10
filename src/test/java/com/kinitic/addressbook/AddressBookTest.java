@@ -30,4 +30,9 @@ public class AddressBookTest {
     public void shouldReturnOldestPersonInAddressBook() throws Exception {
         assertThat(addressBook.findOldest(), is("Wes Jackson"));
     }
+
+    @Test
+    public void shouldReturnAgeGapInDays() throws Exception {
+        assertThat(addressBook.calculateAgeGap("Bill McKnight", "Paul Robinson"), is(2862L));
+    }
 }

@@ -38,5 +38,11 @@ public class AddressBook {
         final Comparator<Person> byAge =
                 (p1, p2) -> p2.getDateOfBirth().compareTo(p1.getDateOfBirth());
 
-        return persons.stream().max(byAge).get().getName();    }
+        return persons.stream().max(byAge).get().getName();
+    }
+
+
+    public String calculateAgeGap(final String person1, final String person2) {
+        throw new UnsupportedOperationException();
+    }
 }
