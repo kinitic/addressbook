@@ -18,12 +18,12 @@ public class AddressBookTest {
     }
     @Test
     public void shouldCountNumberOfMalesInAddressBook() throws Exception {
-        assertThat(addressBook.numberOf(MALE), is(3L));
+        assertThat(addressBook.numberOfPersonsByGender(MALE), is(3L));
     }
 
     @Test
     public void shouldCountNumberOfFemalesInAddressBook() throws Exception {
-        assertThat(addressBook.numberOf(FEMALE), is(2L));
+        assertThat(addressBook.numberOfPersonsByGender(FEMALE), is(2L));
     }
 
     @Test

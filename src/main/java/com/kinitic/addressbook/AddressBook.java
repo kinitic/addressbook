@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,7 +33,7 @@ public class AddressBook {
                 .collect(Collectors.toList());
     }
 
-    public long numberOf(final Gender gender) {
+    public long numberOfPersonsByGender(final Gender gender) {
         return persons.stream().filter(person -> person.getGender().equals(gender)).count();
     }
 
@@ -47,15 +46,12 @@ public class AddressBook {
 
 
     public long calculateAgeGap(final String name1, final String name2) {
-        final Optional<Person> person1 = persons.stream().filter(person -> person.getName().equals(name1)).findFirst();
-        final Optional<Person> person2 = persons.stream().filter(person -> person.getName().equals(name2)).findFirst();
+        final LocalDate dateOfBirthForName1 = findByName(name1).getDateOfBirth();
+        final LocalDate dateOfBirthForName2 = findByName(name2).getDateOfBirth();
+        return DAYS.between(dateOfBirthForName1, dateOfBirthForName2);
+    }
 
-        if (person1.isPresent() && person2.isPresent()) {
-            final LocalDate dateOfBirthForName1 = person1.get().getDateOfBirth();
-            final LocalDate dateOfBirthForName2 = person2.get().getDateOfBirth();
-            return DAYS.between(dateOfBirthForName1, dateOfBirthForName2);
-        }  else {
-            throw new IllegalArgumentException("Invalid names entered, check if they exist in the address book!");
-        }
+    private Person findByName(String name) {
+        return persons.stream().filter(person -> person.getName().equals(name)).findFirst().orElseThrow(IllegalArgumentException::new);
     }
 }
