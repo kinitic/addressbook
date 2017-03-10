@@ -30,5 +30,4 @@ public class AddressBookTest {
     public void shouldReturnOldestPersonInAddressBook() throws Exception {
         assertThat(addressBook.findOldest(), is("Wes Jackson"));
     }
-
 }

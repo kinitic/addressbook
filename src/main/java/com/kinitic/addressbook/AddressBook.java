@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -34,6 +35,8 @@ public class AddressBook {
     }
 
     public String findOldest() {
-        throw new UnsupportedOperationException();
-    }
+        final Comparator<Person> byAge =
+                (p1, p2) -> p2.getDateOfBirth().compareTo(p1.getDateOfBirth());
+
+        return persons.stream().max(byAge).get().getName();    }
 }
