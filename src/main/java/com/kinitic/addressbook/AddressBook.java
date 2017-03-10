@@ -29,7 +29,11 @@ public class AddressBook {
                 .collect(Collectors.toList());
     }
 
-    public long numberOf(final Gender gender) throws IOException {
+    public long numberOf(final Gender gender) {
         return persons.stream().filter(person -> person.getGender().equals(gender)).count();
+    }
+
+    public String findOldest() {
+        throw new UnsupportedOperationException();
     }
 }
