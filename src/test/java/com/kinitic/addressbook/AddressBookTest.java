@@ -10,11 +10,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddressBookTest {
 
+    private static final String ADDRESS_BOOK = "addressbook.csv";
+
     private AddressBook addressBook;
 
     @Before
     public void setup() throws Exception {
-       addressBook = new AddressBook("addressbook.csv");
+       addressBook = new AddressBook(ADDRESS_BOOK);
     }
     @Test
     public void shouldCountNumberOfMalesInAddressBook() throws Exception {
