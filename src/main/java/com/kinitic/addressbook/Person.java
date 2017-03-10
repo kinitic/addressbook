@@ -3,12 +3,12 @@ package com.kinitic.addressbook;
 public class Person {
 
     private final String name;
-    private final String gender;
+    private final Gender gender;
     private final String dateOfBirth;
 
     public Person(final String name, final String gender, final String dateOfBirth) {
         this.name = name;
-        this.gender = gender;
+        this.gender = Gender.fromString(gender);
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -16,7 +16,7 @@ public class Person {
         return name;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 

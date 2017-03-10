@@ -9,7 +9,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.kinitic.addressbook.Gender.MALE;
+
 public class AddressBook {
+
+    private static final String DELIMITER = ", ";
 
     private final List<Person> persons;
 
@@ -18,7 +22,7 @@ public class AddressBook {
         final Stream<String> lines = Files.lines(path);
 
         final Function<String, Person> mapToPerson = (line) -> {
-            String[] p = line.split(", ");
+            String[] p = line.split(DELIMITER);
             return new Person(p[0], p[1], p[2]);
         };
 
@@ -28,6 +32,6 @@ public class AddressBook {
     }
 
     public long numberOfMales() throws IOException {
-        return persons.stream().filter(person -> person.getGender().equals("Male")).count();
+        return persons.stream().filter(person -> person.getGender().equals(MALE)).count();
     }
 }
