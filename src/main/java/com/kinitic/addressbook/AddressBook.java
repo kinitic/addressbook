@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class AddressBook {
 
@@ -42,7 +46,13 @@ public class AddressBook {
     }
 
 
-    public String calculateAgeGap(final String person1, final String person2) {
-        throw new UnsupportedOperationException();
+    public long calculateAgeGap(final String name1, final String name2) {
+        final Optional<Person> person1 = persons.stream().filter(person -> person.getName().equals(name1)).findFirst();
+        final Optional<Person> person2 = persons.stream().filter(person -> person.getName().equals(name2)).findFirst();
+
+        final LocalDate dateOfBirthForName1 = person1.get().getDateOfBirth();
+        final LocalDate dateOfBirthForName2 = person2.get().getDateOfBirth();
+
+        return DAYS.between(dateOfBirthForName1, dateOfBirthForName2);
     }
 }

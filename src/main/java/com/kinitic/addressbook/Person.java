@@ -1,15 +1,18 @@
 package com.kinitic.addressbook;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Person {
 
     private final String name;
     private final Gender gender;
-    private final String dateOfBirth;
+    private final LocalDate dateOfBirth;
 
     public Person(final String name, final String gender, final String dateOfBirth) {
         this.name = name;
         this.gender = Gender.fromString(gender);
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yy"));
     }
 
     public String getName() {
@@ -20,7 +23,7 @@ public class Person {
         return gender;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 }
