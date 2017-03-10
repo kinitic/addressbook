@@ -9,8 +9,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.kinitic.addressbook.Gender.MALE;
-
 public class AddressBook {
 
     private static final String DELIMITER = ", ";
@@ -31,7 +29,7 @@ public class AddressBook {
                 .collect(Collectors.toList());
     }
 
-    public long numberOfMales() throws IOException {
-        return persons.stream().filter(person -> person.getGender().equals(MALE)).count();
+    public long numberOf(final Gender gender) throws IOException {
+        return persons.stream().filter(person -> person.getGender().equals(gender)).count();
     }
 }
