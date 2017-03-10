@@ -50,9 +50,12 @@ public class AddressBook {
         final Optional<Person> person1 = persons.stream().filter(person -> person.getName().equals(name1)).findFirst();
         final Optional<Person> person2 = persons.stream().filter(person -> person.getName().equals(name2)).findFirst();
 
-        final LocalDate dateOfBirthForName1 = person1.get().getDateOfBirth();
-        final LocalDate dateOfBirthForName2 = person2.get().getDateOfBirth();
-
-        return DAYS.between(dateOfBirthForName1, dateOfBirthForName2);
+        if (person1.isPresent() && person2.isPresent()) {
+            final LocalDate dateOfBirthForName1 = person1.get().getDateOfBirth();
+            final LocalDate dateOfBirthForName2 = person2.get().getDateOfBirth();
+            return DAYS.between(dateOfBirthForName1, dateOfBirthForName2);
+        }  else {
+            throw new IllegalArgumentException("Invalid names entered, check if they exist in the address book!");
+        }
     }
 }

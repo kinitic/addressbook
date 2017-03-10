@@ -35,4 +35,9 @@ public class AddressBookTest {
     public void shouldReturnAgeGapInDays() throws Exception {
         assertThat(addressBook.calculateAgeGap("Bill McKnight", "Paul Robinson"), is(2862L));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionIfPersonDoesNotExistInAddressBook() throws Exception {
+        addressBook.calculateAgeGap("Bill McKnight", "Bill Nobody");
+    }
 }
