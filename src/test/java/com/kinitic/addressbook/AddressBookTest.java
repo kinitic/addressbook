@@ -9,7 +9,7 @@ public class AddressBookTest {
 
     @Test
     public void shouldCountNumberOfMalesInAddressBook() throws Exception {
-        final AddressBook addressBook = new AddressBook();
+        final AddressBook addressBook = new AddressBook("addressbook.csv");
         assertThat(addressBook.numberOfMales(), is(3L));
     }
 }

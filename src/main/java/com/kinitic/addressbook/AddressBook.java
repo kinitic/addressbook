@@ -11,8 +11,10 @@ import java.util.stream.Stream;
 
 public class AddressBook {
 
-    public long numberOfMales() throws IOException {
-        final Path path = Paths.get("src/main/resources/addressbook.csv");
+    private final List<Person> persons;
+
+    public AddressBook(final String filename) throws IOException {
+        final Path path = Paths.get("src/main/resources/" + filename);
         final Stream<String> lines = Files.lines(path);
 
         final Function<String, Person> mapToPerson = (line) -> {
@@ -20,10 +22,12 @@ public class AddressBook {
             return new Person(p[0], p[1], p[2]);
         };
 
-        final List<Person> allPersons = lines
+        this.persons = lines
                 .map(mapToPerson)
                 .collect(Collectors.toList());
+    }
 
-        return allPersons.stream().filter(person -> person.getGender().equals("Male")).count();
+    public long numberOfMales() throws IOException {
+        return persons.stream().filter(person -> person.getGender().equals("Male")).count();
     }
 }
